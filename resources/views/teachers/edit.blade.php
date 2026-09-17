@@ -74,44 +74,45 @@
 
         </div>
 
-                <div>
-
-            <label for="phone"
-                class="mb-1.5 block text-xs font-semibold uppercase tracking-[0.1em] text-[#16213A]">Nomor Telpon</label>
-
-            <input type="text" id="phone" name="phone" value="081234560001"
-                class="w-full border border-[#D9D6CD] bg-[#FCFBF8] px-3.5 py-2.5 text-sm focus:border-[#A16207] focus:bg-white focus:outline-none">
-
-        </div>
-
         <div>
 
-            <label for="status"
-                class="mb-1.5 block text-xs font-semibold uppercase tracking-[0.1em] text-[#16213A]">Status</label>
+            <div>
+                <label for="phone_number"
+                    class="mb-1.5 block text-xs font-semibold uppercase tracking-[0.1em] text-[#16213A]">Nomor
+                    Telepon</label>
+                <input type="tel" id="phone_number" name="phone_number"
+                    value="{{ $teacher['phone_number'] ?? $teacher['phone'] ?? '' }}"
+                    class="w-full border border-[#D9D6CD] bg-[#FCFBF8] px-3.5 py-2.5 text-sm focus:border-[#A16207] focus:bg-white focus:outline-none">
+            </div>
 
-            <select id="status" name="status"
-                class="w-full border border-[#D9D6CD] bg-[#FCFBF8] px-3.5 py-2.5 text-sm focus:border-[#A16207] focus:bg-white focus:outline-none">
+            <div>
 
-                <option value="" selected>Aktif</option>
+                <label for="status"
+                    class="mb-1.5 block text-xs font-semibold uppercase tracking-[0.1em] text-[#16213A]">Status</label>
 
-                <option value="">Tidak Aktif</option>
+                <select id="status" name="status"
+                    class="w-full border border-[#D9D6CD] bg-[#FCFBF8] px-3.5 py-2.5 text-sm focus:border-[#A16207] focus:bg-white focus:outline-none">
 
-            </select>
+                    <option value="" selected>Aktif</option>
 
-        </div>
+                    <option value="">Tidak Aktif</option>
+
+                </select>
+
+            </div>
 
 
 
-        <div class="flex justify-end gap-4 border-t border-[#EFEDE6] pt-6">
+            <div class="flex justify-end gap-4 border-t border-[#EFEDE6] pt-6">
 
-            <a href="" class="px-4 py-2.5 text-sm font-medium text-slate-500 hover:text-[#16213A]">Batal</a>
+                <a href="" class="px-4 py-2.5 text-sm font-medium text-slate-500 hover:text-[#16213A]">Batal</a>
 
-            <button type="submit"
-                class="bg-[#16213A] px-6 py-2.5 text-sm font-medium text-white transition hover:bg-[#26324f]">Perbarui
+                <button type="submit"
+                    class="bg-[#16213A] px-6 py-2.5 text-sm font-medium text-white transition hover:bg-[#26324f]">Perbarui
 
-                Catatan</button>
+                    Catatan</button>
 
-        </div>
+            </div>
 
     </form>
 @endsection
