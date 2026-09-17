@@ -2,81 +2,92 @@
 
 @section('title', $title)
 
-
 @section('content')
 
+<div class="mb-8 border-b border-[#E5E3DB] pb-5">
 
-    <a href="#" class="text-xs uppercase tracking-[0.15em] text-slate-400 hover:text-[#A16207]">&larr; Buku
+    <a
+        href="{{ route('classes.index') }}"
+        class="text-xs uppercase tracking-[0.15em] text-slate-400 hover:text-[#A16207]"
+    >
+        &larr; Daftar Kelas
+    </a>
 
-        Induk</a>
+</div>
 
+<div class="border border-[#E5E3DB] bg-white">
 
+    <div class="flex items-start justify-between border-b border-[#E5E3DB] bg-[#FCFBF8] px-8 py-6">
 
-    <div class="mt-3 border border-[#E5E3DB] bg-white">
+        <div>
 
-        <div class="flex items-start justify-between border-b border-[#E5E3DB] bg-[#FCFBF8] px-8 py-6">
+            <p class="mb-1 text-[11px] uppercase tracking-[0.2em] text-[#A16207]">
+                Lembar Kelas
+            </p>
 
-            <div>
+            <h1 class="font-display text-3xl font-semibold text-[#16213A]">
+                XII AKL 1
+            </h1>
 
-                <p class="mb-1 text-[11px] uppercase tracking-[0.2em] text-[#A16207]">Lembar Kelas</p>
-
-                <h1 class="font-display text-3xl font-semibold text-[#16213A]">XII AKL 1</h1>
-
-            </div>
-
-            <a href="#"
-                class="bg-[#16213A] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[#26324f]">Ubah</a>
-
-        </div>
-
-
-
-        <dl class="divide-y divide-[#EFEDE6] text-sm">
-
-            <div class="flex justify-between px-8 py-4">
-
-                <dt class="uppercase tracking-[0.1em] text-xs text-slate-400">Angkatan</dt>
-
-                <dd class="font-medium text-[#16213A]">XII</dd>
-
-            </div>
-
-            <div class="flex justify-between px-8 py-4">
-
-                <dt class="uppercase tracking-[0.1em] text-xs text-slate-400">Jurusan</dt>
-
-                <dd class="font-medium text-[#16213A]">AKL</dd>
-
-            </div>
-
-            <div class="flex justify-between px-8 py-4">
-
-                <dt class="uppercase tracking-[0.1em] text-xs text-slate-400">Wali Kelas</dt>
-
-                <dd class="font-medium text-[#16213A]">Budi Santoso</dd>
-
-            </div>
-
-        </dl>
-
-
-
-        <div class="flex justify-end gap-4 border-t border-[#E5E3DB] px-8 py-5">
-
-            <a href="" class="px-4 py-2.5 text-sm font-medium text-slate-500 hover:text-[#16213A]">Kembali</a>
-
-            <form action="" method="POST" onsubmit="return confirm('Hapus data siswa ini dari buku induk?')">
-
-                @csrf
-
-                @method('DELETE')
-
-                <button type="submit"
-                    class="border border-red-200 px-5 py-2.5 text-sm font-medium text-red-700 transition hover:bg-red-50">Hapus</button>
-
-            </form>
+            <p class="mt-1 font-mono text-xs text-slate-500">
+                Kelas ID {{ $id }}
+            </p>
 
         </div>
+
+        <a
+            href="{{ route('classes.edit', ['id' => $id]) }}"
+            class="bg-[#16213A] px-5 py-2.5 text-sm font-medium text-white"
+        >
+            Ubah
+        </a>
 
     </div>
+
+    <dl class="divide-y divide-[#EFEDE6] text-sm">
+
+        <div class="flex justify-between px-8 py-5">
+            <dt class="font-medium text-slate-500">
+                Nama Kelas
+            </dt>
+
+            <dd class="text-[#16213A]">
+                XII AKL 1
+            </dd>
+        </div>
+
+        <div class="flex justify-between px-8 py-5">
+            <dt class="font-medium text-slate-500">
+                Tingkat
+            </dt>
+
+            <dd class="text-[#16213A]">
+                XII
+            </dd>
+        </div>
+
+        <div class="flex justify-between px-8 py-5">
+            <dt class="font-medium text-slate-500">
+                Jurusan
+            </dt>
+
+            <dd class="text-[#16213A]">
+                AKL
+            </dd>
+        </div>
+
+        <div class="flex justify-between px-8 py-5">
+            <dt class="font-medium text-slate-500">
+                Wali Kelas
+            </dt>
+
+            <dd class="text-[#16213A]">
+                Budi Santoso
+            </dd>
+        </div>
+
+    </dl>
+
+</div>
+
 @endsection
