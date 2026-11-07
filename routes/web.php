@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MajorController;
 use App\Http\Controllers\SchooClass\CreateController;
 use App\Http\Controllers\SchooClass\DestroyController;
@@ -16,10 +17,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Authentication
+Route::get('/login', [AuthController::class, 'loginView'])->name('login-view')->middleware('guest');
+Route::post('/login', [AuthController::class, 'loginPost'])->name('login-post')->middleware('guest');
+Route::get('/register', [AuthController::class, 'registerView'])->name('register-view')->middleware('guest');
+Route::post('/register', [AuthController::class, 'registerPost'])->name('register-post')->middleware('guest');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
+
 // Manajemen Data Guru
-Route::name('teachers.')->prefix('teachers')->group(function () {
+Route::name('teachers.')->middleware(['role:teacher','auth'])->prefix('teachers')->group(function () {
     Route::get('/', [TeacherController::class, 'index'])->name('index');
-    Route::get('/create', [TeacherController::class, 'create'])->name('create'); 
+    Route::get('/create', [TeacherController::class, 'create'])->name('create');
     Route::get('/{id}', [TeacherController::class, 'show'])->name('show');
     Route::get('/{id}/edit', [TeacherController::class, 'edit'])->name('edit');
     Route::post('/', [TeacherController::class, 'store'])->name('store');
@@ -28,9 +36,9 @@ Route::name('teachers.')->prefix('teachers')->group(function () {
 });
 
 // Manajemen Data Siswa
-Route::name('students.')->prefix('students')->group(function () {
+Route::name('students.')->middleware(['role:student,teacher','auth'])->prefix('students')->group(function () {
     Route::get('/', [StudentController::class, 'index'])->name('index');
-    Route::get('/create', [StudentController::class, 'create'])->name('create'); 
+    Route::get('/create', [StudentController::class, 'create'])->name('create');
     Route::get('/{student}', [StudentController::class, 'show'])->name('show');
     Route::get('/{student}/edit', [StudentController::class, 'edit'])->name('edit');
     Route::post('/', [StudentController::class, 'store'])->name('store');
@@ -39,9 +47,9 @@ Route::name('students.')->prefix('students')->group(function () {
 });
 
 // Manajemen Data Kelas
-Route::name('classes.')->prefix('classes')->group(function () {
+Route::name('classes.')->middleware(['role:teacher','auth'])->prefix('classes')->group(function () {
     Route::get('/', IndexController::class)->name('index');
-    Route::get('/create', CreateController::class)->name('create'); 
+    Route::get('/create', CreateController::class)->name('create');
     Route::get('/{id}', ShowController::class)->name('show');
     Route::get('/{id}/edit', EditController::class)->name('edit');
     Route::post('/', StoreController::class)->name('store');
@@ -49,4 +57,4 @@ Route::name('classes.')->prefix('classes')->group(function () {
     Route::delete('/{id}', DestroyController::class)->name('destroy');
 });
 
-Route::resource('majors', MajorController::class);
+Route::resource('majors', MajorController::class)->middleware(['role:teacher','auth']);
